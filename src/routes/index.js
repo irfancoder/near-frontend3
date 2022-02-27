@@ -5,19 +5,28 @@ import * as Layout from '@/layouts'
 import * as Pages from '@/pages'
 
 const { Authenticated, Guest } = Layout
-const { Home } = Pages
+const { Home, Login } = Pages
 
 const routes = [
     {
         path: '/',
         component: Home,
+        name: 'home:index',
         meta: {
             layout: [Authenticated, Guest]
+        }
+    },
+    {
+        path: '/login',
+        component: Login,
+        name: 'auth:login:index',
+        meta: {
+            layout: [Guest]
         }
     }
 ]
 
-export default createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes: routes,
     scrollBehavior(to, from, savedPosition) {
@@ -28,3 +37,13 @@ export default createRouter({
         }
     }
 })
+
+// router.beforeRouteEnter((to, from, next) => {
+//     next((vm) => {
+//         if (vm.$wallet.isSignedIn()) {
+//             to.meta = { ...to.meta, authed: true }
+//         }
+//     })
+// })
+
+export default router

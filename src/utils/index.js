@@ -1,13 +1,13 @@
 /** @format */
 
-export const route = (path, component, layout, name) => {
-    if (!path || !component) throw new Error('Path and component are required')
+export const route = (path, component, name, layout) => {
+    if (!path || !component || !name) throw new Error('Path, component and name are required')
     return {
         path: path,
         component: component,
+        name: name,
         meta: {
             layout: layout
-        },
-        name: name ?? undefined
+        }
     }
 }

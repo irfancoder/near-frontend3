@@ -1,15 +1,16 @@
 <template>
-    <div>
-        <component :is="layout">
-            <router-view />
-        </component>
-    </div>
+    <component :is="layout">
+        <router-view />
+    </component>
 </template>
 
 <script>
 import { h, resolveComponent } from 'vue'
 
 export default {
+    mounted() {
+        console.log(this.$route)
+    },
     computed: {
         layout() {
             /* Multi layouts */

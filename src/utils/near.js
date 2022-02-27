@@ -1,6 +1,8 @@
 /** @format */
 
-import { connect, keyStores, WalletAccount } from 'near-api-js'
+import { connect, keyStores, WalletAccount, WalletConnection, Contract } from 'near-api-js'
+import * as buffer from 'buffer'
+window.Buffer = buffer.Buffer
 
 const config = {
     networkId: 'testnet',
@@ -16,7 +18,18 @@ export const instance = async () => {
     return near
 }
 
+export const wallet = (instance) => {
+    return new WalletConnection(instance)
+}
+
 export const account = (instance) => {
-    const wallet = new WalletAccount(instance)
-    return wallet
+    return new WalletAccount(instance)
+}
+
+export const contract = (account) => {
+    return new Contract(account, 'irfanismail.testnet', {
+        viewMethods: ['get_count'],
+        changeMethods: ['increment', 'decrement'],
+        sender: account
+    })
 }
