@@ -8,12 +8,9 @@
 import { h, resolveComponent } from 'vue'
 
 export default {
-    mounted() {
-        console.log(this.$route)
-    },
     computed: {
         layout() {
-            /* Multi layouts */
+            /* Multi layout */
             if (Array.isArray(this.$route.meta.layout)) {
                 const layouts = this.$route.meta.layout.reduceRight((child, layout) => {
                     return () =>
