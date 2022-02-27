@@ -38,12 +38,4 @@ const router = createRouter({
     }
 })
 
-// router.beforeRouteEnter((to, from, next) => {
-//     next((vm) => {
-//         if (vm.$wallet.isSignedIn()) {
-//             to.meta = { ...to.meta, authed: true }
-//         }
-//     })
-// })
-
 export default router
